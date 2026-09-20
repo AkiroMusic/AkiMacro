@@ -1,3 +1,93 @@
+# AkiMacro — Windows Macro Automation Tool
+
+General-purpose mouse macro tool | Author: AkiMacro | Version 1.2.0
+
+## Features
+
+| Side Button | Function | Description |
+|------|------|------|
+| **X1** | Auto Rotation | While held, moves the mouse smoothly to the right; 20ms polling, 20 micro-steps |
+| **X2** | Two-Button Macro | Left button held → right button tap → release, repeated twice |
+
+## System Requirements
+
+- Windows 10/11 (64-bit)
+- [.NET 10.0 runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
+- Administrator privileges (the program automatically requests UAC elevation)
+
+## Download
+
+Download the latest version from [Releases](https://github.com/AkiroMusic/AkiMacro/releases/latest)
+
+## Build from Source
+
+```bash
+dotnet restore
+dotnet build -c Release
+dotnet test
+dotnet publish AkiMacro.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+```
+
+You can also run `run.bat` directly to build and launch quickly.
+
+## Project Structure
+
+```
+AkiMacro.sln
+├── AkiMacro.csproj          # WPF project configuration
+├── App.xaml / App.xaml.cs       # Application entry point + automatic UAC elevation
+├── MainWindow.xaml / .cs        # Main window (borderless, custom title bar)
+├── AboutWindow.xaml / .cs       # About window
+├── SettingsWindow.xaml / .cs    # Settings window (read-only display)
+├── app.manifest                 # Administrator privilege manifest
+├── ViewModels/
+│   └── MainWindowViewModel.cs   # MVVM ViewModel
+├── Interop/                     # Win32 P/Invoke
+│   ├── Win32Input.cs            # SendInput / GetAsyncKeyState
+│   └── Win32Structs.cs          # INPUT / MOUSEINPUT structs
+├── Input/                       # Input abstraction layer
+│   ├── IInputSimulator.cs       # Simulation interface
+│   ├── IButtonStateProvider.cs  # Button state interface
+│   ├── Win32InputSimulator.cs   # Win32 implementation
+│   └── Win32ButtonStateProvider.cs
+├── MacroEngine/                 # Macro engine
+│   ├── MacroWorkerBase.cs       # Worker base class
+│   ├── RotationWorker.cs        # Auto rotation macro
+│   ├── DoubleClickWorker.cs     # Two-button macro
+│   ├── MacroCoordinator.cs      # Coordinator
+│   └── InputLock.cs             # Global input lock
+├── Styles/Theme.xaml            # Dark theme resources
+├── tests/                       # xUnit tests
+├── app.ico                      # Application icon
+├── logo.png                     # UI icon
+└── run.bat                      # One-click build and launch
+```
+
+## Technical Architecture
+
+| Module | Description |
+|------|------|
+| **Interop** | Wraps the Win32 API |
+| **Input** | Input abstraction layer for easy unit testing |
+| **MacroEngine** | Macro execution engine; manages Worker thread lifecycles |
+| **ViewModels** | MVVM pattern, keeping UI and business logic separate |
+
+**Design highlights:**
+- **Automatic elevation**: Checks for administrator privileges at startup and triggers UAC when not running as administrator
+- **Thread safety**: The `InputLock.SyncRoot` global lock ensures only one Worker simulates input at a time
+- **Error handling**: Automatically stops and reports an error when `SendInput` fails
+- **Interface abstraction**: `IInputSimulator` / `IButtonStateProvider` support dependency injection and testing
+
+## Disclaimer
+
+This tool is for learning and entertainment purposes only. Do not use it for any behavior that violates game rules, laws, or regulations.
+
+---
+
+**Author: AkiMacro**
+
+---
+
 # AkiMacro
 
 通用鼠标宏工具 | 作者：AkiMacro | 版本 1.2.0
