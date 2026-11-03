@@ -1,5 +1,6 @@
 # AkiMacro — Windows Macro Automation Tool
 
+[![Website](https://img.shields.io/badge/site-akiromusic.github.io-6D82FF)](https://akiromusic.github.io/AkiMacro/)
 General-purpose mouse macro tool | Author: AkiMacro | Version 1.2.0
 
 ## Features
