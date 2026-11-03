@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-pack="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AkiMacro — Mouse side-button macro tool</title>
+<meta name="description" content="A general-purpose Windows mouse macro tool — two side-button macros driven by a Win32 SendInput engine behind a global input lock.">
+<meta property="og:title" content="AkiMacro — Mouse side-button macro tool">
+<meta property="og:description" content="A general-purpose Windows mouse macro tool — two side-button macros driven by a Win32 SendInput engine behind a global input lock.">
+<meta property="og:url" content="https://akiromusic.github.io/AkiMacro/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=IBM+Plex+Mono:wght@400;600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/palette.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="aurora-bg"></div>
+<div class="aurora-sweep"></div>
+<div class="star-field"></div>
+<div class="noise-overlay"></div>
+
+<header class="site-nav material-frosted">
+  <a class="brand" href="#"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>AkiMacro</a>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#details">Details</a>
+    <a href="https://github.com/AkiroMusic/AkiMacro" class="nav-keep">GitHub ↗</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="hero-card panel-contrast material-film flow-nebula spring-in">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>Desktop App · WPF / .NET 10</div>
+      <h1>Aki<span class="grad-text">Macro</span></h1>
+      <p class="tagline">A general-purpose Windows mouse macro tool — two side-button macros driven by a Win32 SendInput engine behind a global input lock.</p>
+      <div class="badge-row"><span class="badge">License <b>MIT</b></span><span class="badge">Platform <b>Windows 10/11 · 64-bit</b></span><span class="badge">Tech <b>WPF · .NET 10</b></span><span class="badge">Engine <b>Win32 SendInput</b></span></div>
+      <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/AkiroMusic/AkiMacro/releases/latest">Download latest</a>
+          <a class="btn btn-ghost" href="https://github.com/AkiroMusic/AkiMacro">Source code</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="features">
+    <div class="block-head">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>Features</div>
+      <h2>What it does</h2>
+      <p class="sub">AkiMacro is a general-purpose mouse macro tool for Windows 10/11, built with WPF and .NET 10. It binds auto rotation and a two-button combo to your mouse side buttons, executed by a Win32 SendInput engine guarded by a global input lock. It requests UAC elevation automatically and follows an MVVM architecture with unit-testable input abstractions.</p>
+    </div>
+    <div class="feature-grid">
+          <article class="feature-card material-liquid double-bezel spring-in wide" style="animation-delay:80ms"><div class="f-icon">🖱️</div><h3>X1 — Auto Rotation</h3><p>While held, moves the mouse smoothly to the right: 20 ms polling with 20 micro-steps.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:140ms"><div class="f-icon">⚡</div><h3>X2 — Two-Button Macro</h3><p>Left button held, right button tap, release — repeated twice per trigger.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:200ms"><div class="f-icon">🛡️</div><h3>Thread safety</h3><p>A global input lock (InputLock.SyncRoot) ensures only one Worker simulates input at a time.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:260ms"><div class="f-icon">🔐</div><h3>Automatic elevation</h3><p>Checks for administrator privileges at startup and triggers UAC when not running elevated.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:320ms"><div class="f-icon">⚙️</div><h3>Error handling</h3><p>Automatically stops and reports an error when SendInput fails.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:380ms"><div class="f-icon">🧪</div><h3>Testable architecture</h3><p>IInputSimulator and IButtonStateProvider abstractions support dependency injection and xUnit tests.</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:440ms"><div class="f-icon">🎨</div><h3>Compact WPF shell</h3><p>Borderless main window with a custom title bar and dark theme, plus About and read-only Settings windows.</p></article>
+    </div>
+  </section>
+
+  
+
+  <section class="block" id="details">
+    <div class="block-head">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>Details</div>
+      <h2>Technical architecture</h2>
+    </div>
+    <div class="detail-card material-liquid double-bezel"><table class="detail-table"><thead><tr><th>Module</th><th>Description</th></tr></thead><tbody><tr><td>Interop</td><td>Wraps the Win32 API</td></tr><tr><td>Input</td><td>Input abstraction layer for easy unit testing</td></tr><tr><td>MacroEngine</td><td>Macro execution engine; manages Worker thread lifecycles</td></tr><tr><td>ViewModels</td><td>MVVM pattern, keeping UI and business logic separate</td></tr></tbody></table></div>
+  </section>
+
+  <section class="block" id="quick-start">
+    <div class="block-head">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>Quick Start</div>
+      <h2>Build from source</h2>
+    </div>
+    <div class="qs-grid">
+      <div class="qs-steps material-liquid double-bezel spring-in">
+        <ol><li><b>Requirements</b> — Windows 10/11 (64-bit) and the .NET 10.0 runtime.</li><li><b>Download</b> the latest build from Releases, or build from source with the commands below.</li><li><b>Launch</b> — the program requests UAC elevation automatically at startup.</li><li><b>Quick path</b> — run <code>run.bat</code> to build and launch in one step.</li></ol>
+      </div>
+      <div class="code-card panel-contrast spring-in" style="animation-delay:80ms">
+        <div class="code-title"><span class="dot"></span>shell</div>
+        <pre>dotnet restore
+dotnet build -c Release
+dotnet test
+
+dotnet publish AkiMacro.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="block" style="text-align:center"><p class="quote-line">“For learning and entertainment purposes only.”</p></div>
+
+  <div class="hairline"></div>
+
+  <section class="block i18n-cn" id="中文" lang="zh-CN">
+    <div class="block-head">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>桌面应用 · WPF / .NET 10</div>
+      <h2>项目简介</h2>
+      <p class="sub">AkiMacro 是一款面向 Windows 10/11 的通用鼠标宏工具，基于 WPF 与 .NET 10 构建。它将自动旋转与双键组合宏绑定到鼠标侧键，由 Win32 SendInput 引擎执行，并以全局输入锁保障线程安全。程序启动时自动请求 UAC 提权，采用 MVVM 架构，输入层可单元测试。</p>
+    </div>
+    <div class="feature-grid">
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:80ms"><div class="f-icon">🖱️</div><h3>X1 — 自动旋转</h3><p>按住时鼠标平滑向右移动：20ms 轮询，20 个微步。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:140ms"><div class="f-icon">⚡</div><h3>X2 — 双键宏</h3><p>左键按住 → 右键点按 → 松开，每次触发循环两次。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:200ms"><div class="f-icon">🛡️</div><h3>线程安全</h3><p>全局输入锁（InputLock.SyncRoot）确保同一时间只有一个 Worker 模拟输入。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:260ms"><div class="f-icon">🔐</div><h3>自动提权</h3><p>启动时检测管理员权限，非管理员运行时自动触发 UAC。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:320ms"><div class="f-icon">⚙️</div><h3>错误处理</h3><p>SendInput 失败时自动停止并上报错误。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:380ms"><div class="f-icon">🧪</div><h3>可测试架构</h3><p>IInputSimulator 与 IButtonStateProvider 抽象支持依赖注入与 xUnit 测试。</p></article>
+          <article class="feature-card material-liquid double-bezel spring-in" style="animation-delay:440ms"><div class="f-icon">🎨</div><h3>紧凑的 WPF 外壳</h3><p>无边框主窗口配自定义标题栏与深色主题，另含关于窗口与只读设置窗口。</p></article>
+    </div>
+    <div class="block-head" style="margin-top:var(--space-8)">
+      <div class="eyebrow"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>明细</div>
+      <h2>技术架构</h2>
+    </div>
+    <div class="detail-card material-liquid double-bezel"><table class="detail-table"><thead><tr><th>模块</th><th>说明</th></tr></thead><tbody><tr><td>Interop</td><td>封装 Win32 API</td></tr><tr><td>Input</td><td>输入抽象层，便于单元测试</td></tr><tr><td>MacroEngine</td><td>宏执行引擎，管理 Worker 线程生命周期</td></tr><tr><td>ViewModels</td><td>MVVM 模式，UI 与业务逻辑分离</td></tr></tbody></table></div>
+    <div class="qs-grid" style="margin-top:var(--space-8)">
+      <div class="qs-steps material-liquid double-bezel spring-in">
+        <ol><li><b>系统要求</b>——Windows 10/11（64 位）与 .NET 10.0 运行时。</li><li><b>下载</b>Releases 中的最新版本，或用下方命令从源码构建。</li><li><b>启动</b>——程序在启动时自动请求 UAC 提权。</li><li><b>快速方式</b>——运行 <code>run.bat</code> 一键构建并启动。</li></ol>
+      </div>
+      <div class="code-card panel-contrast spring-in" style="animation-delay:80ms">
+        <div class="code-title"><span class="dot"></span>shell</div>
+        <pre>dotnet restore
+dotnet build -c Release
+dotnet test
+
+dotnet publish AkiMacro.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="block" style="text-align:center"><p class="quote-line">“仅供学习和娱乐使用。”</p></div>
+
+  <footer class="site-footer">
+    <div class="footer-row material-liquid">
+      <div>
+        <a class="brand" href="#"><span class="star"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c.9 6.5 4.6 10.2 12 12-7.4 1.8-11.1 5.5-12 12-.9-6.5-4.6-10.2-12-12C7.4 10.2 11.1 6.5 12 0z"/></svg></span>AkiMacro</a>
+        <p class="footer-meta" style="margin-top:var(--space-3);max-width:340px">A general-purpose Windows mouse macro tool — two side-button macros driven by a Win32 SendInput engine behind a global input lock.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/AkiroMusic/AkiMacro">Source code ↗</a>
+        <a href="https://github.com/AkiroMusic/AkiMacro/releases/latest">Releases ↗</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://akiromusic.com/">akiromusic.com ↗</a>
+        <a href="https://github.com/AkiroMusic">GitHub Profile ↗</a>
+        <a href="https://akiromusic.github.io/AkiroMusic/">All project sites ↗</a>
+      </div>
+    </div>
+    <p class="footer-meta">© 2026 Akiro · MIT licensed. Built with the Aurora Glass design system.</p>
+  </footer>
+
+</main>
+</body>
+</html>

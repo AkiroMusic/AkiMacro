@@ -1,0 +1,9 @@
+/* Per-site palette overrides (extracted from app source) */
+:root {
+  --accent: #533AFD;
+  --accent-hover: #6E58FF;
+  --accent-secondary: #8F7BFF;
+  --grad-a: #4430D9;
+  --grad-b: #7C5CFF;
+  --grad-c: #B49CFF;
+}
