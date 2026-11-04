@@ -43,3 +43,8 @@ publish_output/
 
 # Built executable (root)
 GenshinMacro.exe
+
+# AI tool session artifacts (local-only)
+.omo/
+# RE reference material (local-only)
+REF/
