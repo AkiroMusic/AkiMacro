@@ -11,4 +11,10 @@ internal static class NativeMethods
 
     [DllImport(User32)]
     public static extern short GetAsyncKeyState(int vKey);
+
+    [DllImport(User32)]
+    public static extern IntPtr GetForegroundWindow();
+
+    [DllImport(User32)]
+    public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 }
